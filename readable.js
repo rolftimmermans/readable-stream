@@ -1,6 +1,8 @@
 var Stream = require('stream');
 if (process.env.READABLE_STREAM === 'disable' && Stream) {
   module.exports = Stream.Readable;
+  // Promises are not used and cannot be assigned with Object.assign().
+  delete Stream.promises
   Object.assign(module.exports, Stream);
   module.exports.Stream = Stream;
 } else {
